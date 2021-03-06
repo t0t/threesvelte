@@ -47,11 +47,7 @@ export async function initialize() {
 
 export async function display() {
     const geometry = new SphereGeometry(2, 64, 64);
-    const material = new MeshStandardMaterial( {
-        // map: doorColorTexture,
-        color: "#666666", 
-        // wireframe: true
-      });
+    const material = new MeshStandardMaterial( { color: "#666666"} );
     earthMesh = new Mesh(geometry, material)
 
     gltfLoader.load( '/models/draco.glb', ( gltf ) => { 
@@ -73,7 +69,6 @@ export async function display() {
 
     camera.position.set(0, 1.9, 12.3);
     pointLight.position.set(0, 1.85, 5);
-    earthMesh.rotation.x -= 0.015;
 
     for (let i = 0; i < markerCoordinates.length; i++) {
         const markerMesh = mesh.createMarkerMesh(markerCoordinates[i][0], markerCoordinates[i][1], markerNames[i]);
