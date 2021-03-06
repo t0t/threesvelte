@@ -97,12 +97,12 @@ export async function display() {
     orbitControls.enableDamping = true;
     orbitControls.enableZoom = false;
     orbitControls.enablePan = false;
-    orbitControls.rotateSpeed = 0.2;
+    orbitControls.rotateSpeed = 0.5;
     orbitControls.autoRotate = true;
     orbitControls.autoRotateSpeed = -0.3;
     orbitControls.target = new Vector3(0, 1.9, 0);
-    orbitControls.maxPolarAngle = 1.7;
-    orbitControls.minPolarAngle = 1.7;
+    orbitControls.maxPolarAngle = 3;
+    orbitControls.minPolarAngle = 1;
     orbitControls.update();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
