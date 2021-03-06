@@ -6,9 +6,9 @@ import {
 } from 'three';
 
 export function createMarkerMesh(latitude, longitude, name) {
-    const xCoord = latitude * (Math.PI / longitude);
-    const yCoord = latitude * (Math.PI / 180);
-    const zCoord = -latitude * (Math.PI / 180) * longitude;
+    const xCoord = latitude;
+    const yCoord = longitude;
+    const zCoord = latitude * longitude;
 
     const geometry = new OctahedronGeometry(.5);
     const material = new MeshNormalMaterial();

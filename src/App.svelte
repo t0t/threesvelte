@@ -39,6 +39,7 @@
 
 <style>
     #webgl-container {
+        background-color: grey;
         position: fixed;
         height: 100%;
         width: 100%;
@@ -76,7 +77,7 @@
 
     <div class='content' transition:fade={{duration: 2000}}>
         <Navigation bind:activeCardName={activeCardName} smallNav={smallNav}></Navigation>
-        <!-- <Header smallNav={smallNav}></Header> -->
+        <Header smallNav={smallNav}></Header>
         <div class='card-position'>
             <Card bind:activeCardName={activeCardName}></Card>
         </div>
