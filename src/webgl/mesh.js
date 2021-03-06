@@ -7,15 +7,9 @@ import {
     Vector3
 } from 'three';
 
-export function createEarthMesh(map, bump, spec) {
+export function createEarthMesh() {
     const geometry = new SphereGeometry(2, 64, 64);
-    const material = new MeshPhongMaterial({
-        map: map,
-        bumpMap: bump,
-        bumpScale: 0.3,
-        specularMap: spec,
-        specular: 0.05
-    });
+    const material = new MeshPhongMaterial();
     return new Mesh(geometry, material);
 }
 
@@ -43,6 +37,6 @@ export function createMarkerMesh(latitude, longitude, name) {
 
     mesh.name = name;
     mesh.position.set(xCoord, yCoord, zCoord);
-    mesh.lookAt(new Vector3(0, 0, 0));
+    // mesh.lookAt(new Vector3(0, 0, 0));
     return mesh;
 }

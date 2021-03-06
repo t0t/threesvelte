@@ -71,8 +71,8 @@ export async function initialize() {
 }
 
 export async function display() {
-    earthMesh = mesh.createEarthMesh(earthMap, earthBump, earthSpec);
-    cloudMesh = mesh.createCloudMesh(cloudMap);
+    earthMesh = mesh.createEarthMesh();
+    cloudMesh = mesh.createCloudMesh();
 
     scene.add(camera);
     scene.add(ambientLight);

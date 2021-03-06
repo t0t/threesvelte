@@ -29,7 +29,7 @@
     // render webgl content
     onMount(async () => {
         // await render.loadModel();
-        await render.loadTextures();
+        // await render.loadTextures();
         await render.initialize();
         rendered = await render.display();
         document.getElementById('webgl-container').style = 'opacity: 1';
@@ -76,7 +76,7 @@
 
     <div class='content' transition:fade={{duration: 2000}}>
         <Navigation bind:activeCardName={activeCardName} smallNav={smallNav}></Navigation>
-        <Header smallNav={smallNav}></Header>
+        <!-- <Header smallNav={smallNav}></Header> -->
         <div class='card-position'>
             <Card bind:activeCardName={activeCardName}></Card>
         </div>
