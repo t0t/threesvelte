@@ -89,9 +89,9 @@
 
                 <div class='navigation-group small-navigation-margin'>
                     <div class='navigation-header'>Links</div>
-                    <div class='navigation-item link'><a href='/assets/MatthewHobbs.pdf' download='MatthewHobbs.pdf'>Download Resume</a></div>
-                    <div class='navigation-item link'><a href='https://www.linkedin.com/in/matt-hobbs' target='_blank'>www.linkedin.com/in/matt-hobbs</a></div>
-                    <div class='navigation-item link'><a href='https://www.github.com/matthewdhobbs' target='_blank'>www.github.com/matthewdhobbs</a></div>
+                    <div class='navigation-item link'></div>
+                    <div class='navigation-item link'><a href='https://www.linkedin.com/in/sergiofores' target='_blank'>linkedin</a></div>
+                    <div class='navigation-item link'></div>
                 </div>
 
             </div>
@@ -111,8 +111,8 @@
         {/each}
         <div class='navigation-group'>
             <div class='navigation-header'>Links <img class='icon' src='/assets/icons/external-link.svg' alt='External Link'></div>
-            <div class='navigation-item link'><a href='https://www.linkedin.com/in/matt-hobbs' target='_blank'>www.linkedin.com/in/matt-hobbs</a></div>
-            <div class='navigation-item link'><a href='https://www.github.com/matthewdhobbs' target='_blank'>www.github.com/matthewdhobbs</a></div>
+            <div class='navigation-item link'><a href='https://www.linkedin.com/in/sergiofores' target='_blank'>linkedin</a></div>
+            <div class='navigation-item link'></div>
         </div>
     </div>
 
