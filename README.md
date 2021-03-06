@@ -1,1 +1,1 @@
-# personal-website
+# Three + Svelte lab

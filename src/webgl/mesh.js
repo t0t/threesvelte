@@ -1,29 +1,9 @@
 import {
-    SphereGeometry,
     OctahedronGeometry,
-    MeshPhongMaterial,
     MeshNormalMaterial,
     Mesh,
     Vector3
 } from 'three';
-
-export function createEarthMesh() {
-    const geometry = new SphereGeometry(2, 64, 64);
-    const material = new MeshPhongMaterial();
-    return new Mesh(geometry, material);
-}
-
-export function createCloudMesh(map) {
-    const geometry = new SphereGeometry(2.01, 64, 64);
-    const material = new MeshPhongMaterial({
-        map: map,
-        bumpMap: map,
-        bumpScale: 2,
-        opacity: 0.15,
-        transparent: true
-    });
-    return new Mesh(geometry, material);
-}
 
 export function createMarkerMesh(latitude, longitude, name) {
     const radius = 2.06;
@@ -37,6 +17,6 @@ export function createMarkerMesh(latitude, longitude, name) {
 
     mesh.name = name;
     mesh.position.set(xCoord, yCoord, zCoord);
-    // mesh.lookAt(new Vector3(0, 0, 0));
+    mesh.lookAt(new Vector3(0, 0, 0));
     return mesh;
 }
