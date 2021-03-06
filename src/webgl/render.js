@@ -7,8 +7,6 @@ import {
     Raycaster,
     Vector2,
     Vector3,
-    Mesh,
-    SphereGeometry,
     MeshStandardMaterial
 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -19,7 +17,7 @@ import * as mesh from './mesh';
 import { activeLocationName } from '../store';
 
 let renderer, scene, camera;
-let earthMesh, markerMeshes = []; // meshes
+let markerMeshes = []; // meshes
 let ambientLight, pointLight; // lights
 let orbitControls; // controls
 
@@ -45,11 +43,8 @@ export async function initialize() {
     pointLight = new PointLight(0xffffff, 1);
 }
 
+const material = new MeshStandardMaterial( { color: "#666666"} );
 export async function display() {
-    const geometry = new SphereGeometry(2, 64, 64);
-    const material = new MeshStandardMaterial( { color: "#666666"} );
-    earthMesh = new Mesh(geometry, material)
-
     gltfLoader.load( '/models/draco.glb', ( gltf ) => { 
         gltf.scene.traverse( node => 
             { if (node.isMesh) { 
@@ -57,7 +52,12 @@ export async function display() {
             //   node.position.x = 0; 
             //   camera.lookAt(node.position)
             } }
-          );
+        );
+        for (let i = 0; i < markerCoordinates.length; i++) {
+            const markerMesh = mesh.createMarkerMesh(markerCoordinates[i][0], markerCoordinates[i][1], markerNames[i]);
+            markerMeshes.push(markerMesh);
+            gltf.scene.add(markerMesh);
+        }
         scene.add( gltf.scene ) 
     })
 
@@ -65,16 +65,8 @@ export async function display() {
     scene.add(ambientLight);
     scene.add(pointLight);
 
-    scene.add(earthMesh);
-
     camera.position.set(0, 1.9, 12.3);
     pointLight.position.set(0, 1.85, 5);
-
-    for (let i = 0; i < markerCoordinates.length; i++) {
-        const markerMesh = mesh.createMarkerMesh(markerCoordinates[i][0], markerCoordinates[i][1], markerNames[i]);
-        markerMeshes.push(markerMesh);
-        earthMesh.add(markerMesh);
-    }
 
     orbitControls = new OrbitControls(camera, renderer.domElement);
     orbitControls.enableDamping = true;
