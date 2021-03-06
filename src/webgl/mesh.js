@@ -19,18 +19,6 @@ export function createEarthMesh(map, bump, spec) {
     return new Mesh(geometry, material);
 }
 
-export function createCloudMesh(map) {
-    const geometry = new SphereGeometry(2.01, 64, 64);
-    const material = new MeshPhongMaterial({
-        map: map,
-        bumpMap: map,
-        bumpScale: 2,
-        opacity: 0.15,
-        transparent: true
-    });
-    return new Mesh(geometry, material);
-}
-
 export function createMarkerMesh(latitude, longitude, name) {
     const radius = 2.06;
     const xCoord = radius * Math.cos(latitude * (Math.PI / 180)) * Math.cos(longitude * (Math.PI / 180));
