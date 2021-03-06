@@ -1,0 +1,78 @@
+<script>
+    export let smallNav;
+</script>
+
+<style>
+    .header {
+        display: flex;
+        margin: auto;
+        max-width: 1100px;
+    }
+    .header * {
+        color: white;
+    }
+    .header-content {
+        pointer-events: all;
+    }
+    .title {
+        margin-top: 4rem;
+        font-size: 2rem;
+    }
+    .subtitle {
+        margin-top: 0.66rem;
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.5rem;
+    }
+    .button {
+        display: flex;
+        margin-top: 2.66rem;
+        padding: 1rem 2rem;
+        width: fit-content;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 2px;
+        font-weight: 300;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: .5s;
+    }
+    .button:hover {
+        color: black;
+        background: white;
+        border: 1px solid rgba(255, 255, 255);
+    }
+    .button:hover svg {
+        stroke: black;
+    }
+    svg {
+        transition: .5s;
+        width: 1rem;
+        height: 1rem;
+    }
+    .button-icon {
+        margin-left: 0.66rem;
+        transform: translateY(2px);
+    }
+    .tip {
+        margin-top: 20px;
+        font-size: 0.8rem;
+        font-weight: 300;
+        opacity: 0.5;
+    }
+</style>
+
+<div class='header'>
+    <div class='header-content'>
+        <div class='title'>Hello, I'm Matthew.</div>
+        <div class='subtitle'>I'm currently studying computer science at Carleton University.</div>
+        {#if !smallNav}
+            <a class='button' href='/assets/MatthewHobbs.pdf' download='MatthewHobbs.pdf'>
+                Resume
+                <svg class='button-icon feather feather-download' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'>
+                    <path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'></path><polyline points='7 10 12 15 17 10'></polyline><line x1='12' y1='15' x2='12' y2='3'></line>
+                </svg>
+            </a>
+        {/if}
+        <div class='tip'>* Click on a marker for more information.</div>
+    </div>
+</div>
