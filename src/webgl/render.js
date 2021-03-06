@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-import * as mesh from './mesh';
+import * as mesh from './markers';
 import { activeLocationName } from '../store';
 
 let renderer, scene, camera;
@@ -21,11 +21,11 @@ let markerMeshes = []; // meshes
 let ambientLight, pointLight; // lights
 let orbitControls; // controls
 
-let markerNames = ['Ottawa', 'Toronto', 'Chertsey'];
+let markerNames = ['Button1', 'Button2', 'Button3'];
 let markerCoordinates = [
-    [45.424721, -75.695000], 
-    [43.6532, -79.3832], 
-    [51.3865, -0.5095]
+    [30, 10], 
+    [10, 11], 
+    [20, 20]
 ];
 
 // Model loader
@@ -37,7 +37,7 @@ gltfLoader.setDRACOLoader(dracoLoader)
 export async function initialize() {
     renderer = new WebGLRenderer( {antialias: true} );
     scene = new Scene();
-    camera = new PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera = new PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 
     ambientLight = new AmbientLight(0xffffff, 1);
     pointLight = new PointLight(0xffffff, 1);
@@ -49,8 +49,6 @@ export async function display() {
         gltf.scene.traverse( node => 
             { if (node.isMesh) { 
               node.material = material; 
-            //   node.position.x = 0; 
-            //   camera.lookAt(node.position)
             } }
         );
         for (let i = 0; i < markerCoordinates.length; i++) {
@@ -65,7 +63,7 @@ export async function display() {
     scene.add(ambientLight);
     scene.add(pointLight);
 
-    camera.position.set(0, 1.9, 12.3);
+    camera.position.set(0, 10, 20);
     pointLight.position.set(0, 1.85, 5);
 
     orbitControls = new OrbitControls(camera, renderer.domElement);

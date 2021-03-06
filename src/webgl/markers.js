@@ -6,12 +6,11 @@ import {
 } from 'three';
 
 export function createMarkerMesh(latitude, longitude, name) {
-    const radius = 2.06;
-    const xCoord = radius * Math.cos(latitude * (Math.PI / 180)) * Math.cos(longitude * (Math.PI / 180));
-    const yCoord = radius * Math.sin(latitude * (Math.PI / 180));
-    const zCoord = -radius * Math.cos(latitude * (Math.PI / 180)) * Math.sin(longitude * (Math.PI / 180));
+    const xCoord = latitude * (Math.PI / longitude);
+    const yCoord = latitude * (Math.PI / 180);
+    const zCoord = -latitude * (Math.PI / 180) * longitude;
 
-    const geometry = new OctahedronGeometry(.3);
+    const geometry = new OctahedronGeometry(.5);
     const material = new MeshNormalMaterial();
     const mesh = new Mesh(geometry, material);
 

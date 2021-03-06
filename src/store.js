@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 export let activeLocationName = new writable(null);
 
 export const locationInformation = {
-    'Ottawa': {
+    'Button1': {
         'bbbbb': {
             location: 'xxx',
             logo: '/assets/logos/logo.svg',
@@ -33,7 +33,7 @@ export const locationInformation = {
             description: 'xxx'
         }
     },
-    'Toronto': {
+    'Button2': {
         'aaaaa': {
             location: 'xxx',
             logo: '/assets/logos/logo.svg',
@@ -49,7 +49,7 @@ export const locationInformation = {
             description: 'xxx'
         }
     },
-    'Chertsey': {
+    'Button3': {
         'Birthplace': {
             location: 'xxx',
             logo: '/assets/logos/logo.svg',
