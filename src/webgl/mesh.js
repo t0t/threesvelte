@@ -1,23 +1,9 @@
 import {
-    SphereGeometry,
     OctahedronGeometry,
-    MeshPhongMaterial,
     MeshNormalMaterial,
     Mesh,
     Vector3
 } from 'three';
-
-export function createEarthMesh(map, bump, spec) {
-    const geometry = new SphereGeometry(2, 64, 64);
-    const material = new MeshPhongMaterial({
-        map: map,
-        bumpMap: bump,
-        bumpScale: 0.3,
-        specularMap: spec,
-        specular: 0.05
-    });
-    return new Mesh(geometry, material);
-}
 
 export function createMarkerMesh(latitude, longitude, name) {
     const radius = 2.06;

@@ -29,7 +29,7 @@
     // render webgl content
     onMount(async () => {
         // await render.loadModel();
-        await render.loadTextures();
+        // await render.loadTextures();
         await render.initialize();
         rendered = await render.display();
         document.getElementById('webgl-container').style = 'opacity: 1';

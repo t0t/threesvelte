@@ -7,10 +7,10 @@
     let smallNavOpen = false;
 
     const links = {
-        'Experience': ['Royal Bank of Canada', 'Mitel Networks'],
-        'Education': ['Carleton University'],
-        'Achievements': ['Innovation Challenge', 'cuHacking 2020'],
-        'Projects': ['Smarticle']
+        'Group1': ['aaaaa', 'bbbbb'],
+        'Group2': ['ccccc'],
+        'Group3': ['ddddd', 'eeeee'],
+        'Group4': ['fffff']
     }
 </script>
 

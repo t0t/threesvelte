@@ -6,19 +6,20 @@ import {
     PointLight,
     Raycaster,
     Vector2,
-    Vector3
+    Vector3,
+    Mesh,
+    SphereGeometry,
+    MeshStandardMaterial
 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-import * as util from './util';
 import * as mesh from './mesh';
 import { activeLocationName } from '../store';
 
 let renderer, scene, camera;
 let earthMesh, markerMeshes = []; // meshes
-let earthMap, earthBump, earthSpec; // textures
 let ambientLight, pointLight; // lights
 let orbitControls; // controls
 
@@ -29,41 +30,39 @@ let markerCoordinates = [
     [51.3865, -0.5095]
 ];
 
-export async function loadTextures() {
-    let promises = [
-        util.loadTexture('/assets/webgl/8k_earth_nightmap.jpg'),
-        util.loadTexture('/assets/webgl/8081_earthbump10k.jpg'),
-        util.loadTexture('/assets/webgl/8081_earthspec10k.jpg'),
-    ];
-    const values = await Promise.all(promises);
-    earthMap = values[0];
-    earthBump = values[1];
-    earthSpec = values[2]; 
-}
-
 // Model loader
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath("/draco/")
-
 const gltfLoader = new GLTFLoader()
 gltfLoader.setDRACOLoader(dracoLoader)
 
-
-
 export async function initialize() {
-    renderer = new WebGLRenderer({antialias: true});
+    renderer = new WebGLRenderer( {antialias: true} );
     scene = new Scene();
     camera = new PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    ambientLight = new AmbientLight(0xffffff, 2);
-    pointLight = new PointLight(0xffffff, 2.5);
+    ambientLight = new AmbientLight(0xffffff, 1);
+    pointLight = new PointLight(0xffffff, 1);
 }
 
 export async function display() {
-    earthMesh = mesh.createEarthMesh(earthMap, earthBump, earthSpec);
+    const geometry = new SphereGeometry(2, 64, 64);
+    const material = new MeshStandardMaterial( {
+        // map: doorColorTexture,
+        color: "#666666", 
+        // wireframe: true
+      });
+    earthMesh = new Mesh(geometry, material)
 
     gltfLoader.load( '/models/draco.glb', ( gltf ) => { 
-      scene.add( gltf.scene ) 
+        gltf.scene.traverse( node => 
+            { if (node.isMesh) { 
+              node.material = material; 
+            //   node.position.x = 0; 
+            //   camera.lookAt(node.position)
+            } }
+          );
+        scene.add( gltf.scene ) 
     })
 
     scene.add(camera);
@@ -72,11 +71,9 @@ export async function display() {
 
     scene.add(earthMesh);
 
-    earthMap.anisotropy = renderer.capabilities.getMaxAnisotropy();
-
     camera.position.set(0, 1.9, 12.3);
     pointLight.position.set(0, 1.85, 5);
-    earthMesh.rotation.x -= 0.15;
+    earthMesh.rotation.x -= 0.015;
 
     for (let i = 0; i < markerCoordinates.length; i++) {
         const markerMesh = mesh.createMarkerMesh(markerCoordinates[i][0], markerCoordinates[i][1], markerNames[i]);
